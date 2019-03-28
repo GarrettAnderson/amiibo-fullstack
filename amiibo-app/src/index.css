@@ -1,0 +1,51 @@
+:root {
+  font: 16px / 1 sans-serif;
+  font-family: 'Cuprum', sans-serif;
+}
+
+html {
+  font-size: 10px;
+  background: ;
+}
+
+body {
+  background-image: url('https://wallpaperplay.com/walls/full/0/a/f/34590.jpg');
+  background-size: inherit;
+}
+
+header {
+  background: whitesmoke;
+  border-bottom: 0.1px solid #000;
+  height: 60px;
+  padding: 10px;
+}
+
+header h1 {
+  font-size: 11px;
+  margin-top: 12px;
+  margin-left: 10px;
+}
+
+.container {
+  background: #86a86a;
+  width: 298px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+input {
+  margin-bottom: 30px;
+}
+
+img {
+  float: left;
+}
+
+ul {
+  clear: both;
+}
