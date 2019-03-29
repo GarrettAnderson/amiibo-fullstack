@@ -3,7 +3,13 @@ class AmiiboCharactersController < ApplicationController
 
   # GET /amiibo_characters
   def index
-    @amiibo_characters = AmiiboCharacter.all
+    name = params[:name]
+
+    if name.present?
+      @amiibo_characters = AmiiboCharacter.where("name like ?", "%#{name}%")
+    else
+      @amiibo_characters = AmiiboCharacter.all
+    end
 
     render json: @amiibo_characters
   end
@@ -39,13 +45,14 @@ class AmiiboCharactersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_amiibo_character
-      @amiibo_character = AmiiboCharacter.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def amiibo_character_params
-      params.require(:amiibo_character).permit(:name, :image_URL)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_amiibo_character
+    @amiibo_character = AmiiboCharacter.find(params[:name])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def amiibo_character_params
+    params.require(:amiibo_character).permit(:name, :image_URL)
+  end
 end

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 // import Amiibo from './components/amiiboApp'
 
 class App extends Component {
@@ -10,27 +11,39 @@ class App extends Component {
       searchText: '',
       apiLink: '',
       character: {},
-      image: ''
+      image: []
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.characterRequest = this.characterRequest.bind(this)
   }
 
-  handleChange(e) {
-    this.setState({ searchText: e.target.value })
+  handleChange = (e) => {
+    const inputValue = e.target.value
+    this.setState({ searchText: inputValue }, () => {
+      this.characterRequest()
+    })
   }
 
   characterRequest() {
-    fetch('http://localhost:3000/amiibo_characters/' + this.state.searchText)
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result.amiibo)
-        this.setState({
-          character: result.amiibo[0],
-          image: result.amiibo[0].image
-        })
+    // fetch('http://localhost:3000/amiibo_characters/' + this.state.searchText)
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result.amiibo)
+    //     this.setState({
+    //       character: result.amiibo,
+    //       image: result.amiibo.image
+    //     })
+    //   })
+    console.log('searching for')
+    console.log(this.state.searchText)
+    axios.get(`http://localhost:3000/amiibo_characters?name=${this.state.searchText}`).then((response) => {
+      console.log(response.data)
+      this.setState({
+        character: response.data[0].name,
+        image: response.data[0].image_URL
       })
+    })
   }
   // make an ajax call
   // interpolate link state and search word
