@@ -1,0 +1,2 @@
+class AmiiboCharacter < ApplicationRecord
+end

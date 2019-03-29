@@ -22,11 +22,9 @@ class App extends Component {
   }
 
   characterRequest() {
-    fetch(
-      'https://www.amiiboapi.com/api/amiibo/?character' + this.state.searchText
-    )
-      .then(res => res.json())
-      .then(result => {
+    fetch('http://localhost:3000/amiibo_characters/' + this.state.searchText)
+      .then((res) => res.json())
+      .then((result) => {
         console.log(result.amiibo)
         this.setState({
           character: result.amiibo[0],
@@ -40,25 +38,16 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <section className="container">
-          <h2>
-            Pick a Nintendo character to see it's amiibo card! (Mario, Princess
-            Peach, etc.)
-          </h2>
-          <input
-            onChange={this.handleChange}
-            id="lookUp"
-            type="text"
-            name=""
-            value={this.state.searchText}
-          />
+          <h2>Pick a Nintendo character to see it's amiibo card! (Mario, Princess Peach, etc.)</h2>
+          <input onChange={this.handleChange} id="lookUp" type="text" name="" value={this.state.searchText} />
           <button onClick={this.characterRequest} type="button" name="button">
             Look Up
           </button>
           <img src={this.state.image} alt="" />
         </section>
-      </>
+      </div>
     )
   }
 }
