@@ -51,15 +51,19 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <section className="container">
-          <h2>Pick a Nintendo character to see it's amiibo card! (Mario, Princess Peach, etc.)</h2>
+      <div className="content-container">
+        <section className="search-container">
+          <header>
+            <h2>Search a Nintendo character by name to see it's amiibo card!</h2>
+            <h4>(Mario, Princess Peach, Luigi)</h4>
+          </header>
           <input onChange={this.handleChange} id="lookUp" type="text" name="" value={this.state.searchText} />
           <button onClick={this.characterRequest} type="button" name="button">
             Look Up
           </button>
           <img src={this.state.image} alt="" />
         </section>
+        {/* <footer>Built by Garrett L.G. Anderson</footer> */}
       </div>
     )
   }
